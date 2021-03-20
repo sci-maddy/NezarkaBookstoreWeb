@@ -38,7 +38,7 @@
             this.worldPanel.BackColor = System.Drawing.Color.White;
             this.worldPanel.Location = new System.Drawing.Point(12, 41);
             this.worldPanel.Name = "worldPanel";
-            this.worldPanel.Size = new System.Drawing.Size(850, 416);
+            this.worldPanel.Size = new System.Drawing.Size(691, 416);
             this.worldPanel.TabIndex = 0;
             // 
             // jumpingPanel
