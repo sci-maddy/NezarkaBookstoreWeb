@@ -8,7 +8,8 @@ namespace NezarkaBookstoreWeb {
 	
 	class Program {
 		private static void Main(string[] args) {
-			var reader = Console.In;
+			//var reader = Console.In;
+			var reader = new StreamReader(args[0]);
 
 			var store = ModelStore.LoadFrom(reader);
 			if (store == null) {
