@@ -31,6 +31,8 @@
             this.jackButton = new System.Windows.Forms.Button();
             this.jillButton = new System.Windows.Forms.Button();
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
+            this.CustomersListBox = new System.Windows.Forms.ListBox();
+            this.AddCustomerEntity = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // worldPanel
@@ -38,7 +40,7 @@
             this.worldPanel.BackColor = System.Drawing.Color.White;
             this.worldPanel.Location = new System.Drawing.Point(12, 41);
             this.worldPanel.Name = "worldPanel";
-            this.worldPanel.Size = new System.Drawing.Size(691, 416);
+            this.worldPanel.Size = new System.Drawing.Size(631, 416);
             this.worldPanel.TabIndex = 0;
             // 
             // jumpingPanel
@@ -95,11 +97,30 @@
             this.updateTimer.Interval = 40;
             this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
             // 
+            // CustomersListBox
+            // 
+            this.CustomersListBox.FormattingEnabled = true;
+            this.CustomersListBox.Location = new System.Drawing.Point(659, 41);
+            this.CustomersListBox.Name = "CustomersListBox";
+            this.CustomersListBox.Size = new System.Drawing.Size(203, 355);
+            this.CustomersListBox.TabIndex = 6;
+            // 
+            // AddCustomerEntity
+            // 
+            this.AddCustomerEntity.Location = new System.Drawing.Point(659, 415);
+            this.AddCustomerEntity.Name = "AddCustomerEntity";
+            this.AddCustomerEntity.Size = new System.Drawing.Size(203, 42);
+            this.AddCustomerEntity.TabIndex = 7;
+            this.AddCustomerEntity.Text = "Add Customer Entity";
+            this.AddCustomerEntity.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(874, 571);
+            this.Controls.Add(this.AddCustomerEntity);
+            this.Controls.Add(this.CustomersListBox);
             this.Controls.Add(this.jillButton);
             this.Controls.Add(this.jackButton);
             this.Controls.Add(this.janeButton);
@@ -121,6 +142,8 @@
 		private System.Windows.Forms.Button jackButton;
 		private System.Windows.Forms.Button jillButton;
 		private System.Windows.Forms.Timer updateTimer;
-	}
+        private System.Windows.Forms.ListBox CustomersListBox;
+        private System.Windows.Forms.Button AddCustomerEntity;
+    }
 }
 
