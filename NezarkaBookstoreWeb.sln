@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NezarkaBookstoreWeb", "NezarkaBookstoreWeb\NezarkaBookstoreWeb.csproj", "{06DA3411-4500-471E-BEB8-B2690F720B2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JumpingPlatformGame", "..\..\01-Physics-kostra\01-Physics-kostra\JumpingPlatformGame\JumpingPlatformGame\JumpingPlatformGame.csproj", "{2C7763AB-F02B-4FA3-BC51-58977CF45488}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JumpingPlatformGame", "JumpingPlatformGame\JumpingPlatformGame.csproj", "{2C7763AB-F02B-4FA3-BC51-58977CF45488}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
