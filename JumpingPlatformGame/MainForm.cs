@@ -128,7 +128,7 @@ namespace JumpingPlatformGame {
 									break;
 								}
 							default:
-								return;
+								break;
 						}
 					}
 				}
