@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -88,7 +89,65 @@ namespace JumpingPlatformGame {
 		private void AddCustomerEntity_Click(object sender, EventArgs e)
 		{
 
+
 		}
+
+		private void MainForm_Load(object sender, EventArgs e)
+		{
+			List<Customer> customerList = new List<Customer>();
+			using(StreamReader reader = new StreamReader("NezarkaSummer.in")) { 
+				try
+				{
+					if (reader.ReadLine() != "DATA-BEGIN")
+					{
+						return;
+					}
+					while (true)
+					{
+						string line = reader.ReadLine();
+						if (line == null)
+						{
+							return;
+						}
+						else if (line == "DATA-END")
+						{
+							break;
+						}
+
+						string[] tokens = line.Split(';');
+						switch (tokens[0])
+						{
+							case "CUSTOMER":
+								{
+									var customer = new Customer(firstName: tokens[2], lastName: tokens[3], dateJoined: null);
+									if (tokens.Length >= 6)
+									{
+										customer.DateJoined = new DateTime(int.Parse(tokens[4]), int.Parse(tokens[5]), int.Parse(tokens[6]));
+									}
+									customerList.Add(customer);
+									break;
+								}
+							default:
+								return;
+						}
+					}
+				}
+			
+				catch (Exception ex)
+				{
+					if (ex is FormatException || ex is IndexOutOfRangeException)
+					{
+						return;
+					}
+					throw;
+				}
+			}
+			foreach (var s in customerList)
+			{
+				CustomersListBox.Items.Add(s);
+			}
+		}
+
 	}
 
 	static class ControlExtensions {

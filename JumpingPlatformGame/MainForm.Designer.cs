@@ -130,6 +130,7 @@
             this.Controls.Add(this.worldPanel);
             this.Name = "MainForm";
             this.Text = "Jumping Platform Game";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
 
 		}
