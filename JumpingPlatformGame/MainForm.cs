@@ -89,7 +89,7 @@ namespace JumpingPlatformGame {
 		private void AddCustomerEntity_Click(object sender, EventArgs e)
 		{
 			var customer = CustomersListBox.SelectedItem as Customer;
-			if(customer == null)
+			if(customer == null) //catches error, when none is selected in the CustomerListBox
 			{
 				return;
 			}
@@ -102,63 +102,84 @@ namespace JumpingPlatformGame {
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			List<Customer> customerList = new List<Customer>();
-			using(StreamReader reader = new StreamReader("NezarkaSummer.in")) { 
-				try
+			try
+			{
+				using (StreamReader reader = new StreamReader("NezarkaSummer.in"))
 				{
-					if (reader.ReadLine() != "DATA-BEGIN")
+					List<Customer> customerList = ParseInputFile(reader);
+					foreach (var s in customerList)
 					{
-						return;
-					}
-					while (true)
-					{
-						string line = reader.ReadLine();
-						if (line == null)
-						{
-							return;
-						}
-						else if (line == "DATA-END")
-						{
-							break;
-						}
-
-						string[] tokens = line.Split(';');
-						switch (tokens[0])
-						{
-							case "CUSTOMER":
-								{
-									Customer customer;
-									if (tokens.Length >= 6)
-									{
-										DateTime dateJoined = new DateTime(int.Parse(tokens[4]), int.Parse(tokens[5]), int.Parse(tokens[6]));
-										customer = new Customer(firstName: tokens[2], lastName: tokens[3], dateJoined: dateJoined);
-									}
-									else
-									{
-										customer = new Customer(firstName: tokens[2], lastName: tokens[3], dateJoined: null);
-									}
-									customerList.Add(customer);
-									break;
-								}
-							default:
-								break;
-						}
+						CustomersListBox.Items.Add(s);
 					}
 				}
-			
-				catch (Exception ex)
-				{
-					if (ex is FormatException || ex is IndexOutOfRangeException)
+			}
+			catch(Exception ex)
+			{
+					if (ex is FileNotFoundException) //we can still play the game, just only with NPCs, not with users
 					{
 						return;
 					}
 					throw;
+			}
+		}
+		private List<Customer> ParseInputFile(TextReader reader)
+		{
+			//parses input from given file
+			List<Customer> customerList = new List<Customer>();
+
+
+			try
+			{
+				if (reader.ReadLine() != "DATA-BEGIN")
+				{
+					return null;
+				}
+				while (true)
+				{
+					string line = reader.ReadLine();
+					if (line == null)
+					{
+						return null;
+					}
+					else if (line == "DATA-END")
+					{
+						break;
+					}
+
+					string[] tokens = line.Split(';');
+					switch (tokens[0])
+					{
+						case "CUSTOMER":
+							{
+								Customer customer;
+								if (tokens.Length >= 6)
+								{
+									DateTime dateJoined = new DateTime(int.Parse(tokens[4]), int.Parse(tokens[5]), int.Parse(tokens[6]));
+									customer = new Customer(firstName: tokens[2], lastName: tokens[3], dateJoined: dateJoined);
+								}
+								else
+								{
+									customer = new Customer(firstName: tokens[2], lastName: tokens[3], dateJoined: null);
+								}
+								customerList.Add(customer);
+								break;
+							}
+						default:
+							break;
+					}
 				}
 			}
-			foreach (var s in customerList)
+
+			catch (Exception ex)
 			{
-				CustomersListBox.Items.Add(s);
+				if (ex is FormatException || ex is IndexOutOfRangeException)
+				{
+					return null;
+				}
+				throw;
 			}
+			
+			return customerList;
 		}
 
 	}

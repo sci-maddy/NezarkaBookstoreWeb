@@ -117,20 +117,25 @@ namespace JumpingPlatformGame {
 			this.FirstName = firstName;
 			this.LastName = lastName;
 			this.DateJoined = dateJoined;
-			if (DateJoined == null)
+			SetColor();
+			
+		}
+		void SetColor()
+		{
+			//sets color of the instance
+			if (DateJoined == null) //customer since forever
 			{
 				Color = Color.Gold;
 			}
 			else
 			{
-				//Console.WriteLine(DateTime.Now - DateJoined);
 				TimeSpan timeBeingCustomer = DateTime.Now - (DateTime)DateJoined;
-				if(timeBeingCustomer.Days < 365)
+				if (timeBeingCustomer.Days < 365) //computes years and assigns appropriate color
 				{
 					Color = Color.Black;
 
 				}
-				else if(timeBeingCustomer.Days >= 365 && timeBeingCustomer.Days < (365 * 2))
+				else if (timeBeingCustomer.Days >= 365 && timeBeingCustomer.Days < (365 * 2))
 				{
 					Color = Color.DarkRed;
 				}
@@ -150,6 +155,7 @@ namespace JumpingPlatformGame {
 		}
 		public override string ToString()
 		{
+			//for showing in the listBox of customers
 			if(DateJoined == null)
 			{
 				return $"{FirstName} {LastName} since always";
