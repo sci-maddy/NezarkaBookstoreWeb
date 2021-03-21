@@ -98,11 +98,11 @@ namespace JumpingPlatformGame {
 	}
 	class CustomerEntity : MovableEntity
 	{
-		public override Color Color => col;
-		Color col;
+		public override Color Color => colorData;
+		Color colorData;
 		public CustomerEntity(Color color)
 		{
-			col = color;
+			colorData = color;
 		}
 	}
 	class Customer
