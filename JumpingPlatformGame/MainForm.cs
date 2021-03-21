@@ -88,8 +88,16 @@ namespace JumpingPlatformGame {
 
 		private void AddCustomerEntity_Click(object sender, EventArgs e)
 		{
+			var customer = CustomersListBox.SelectedItem as Customer;
+			if(customer == null)
+			{
+				return;
+			}
+			else
+			{
+				RegisterEntity(new CustomerEntity(customer.Color));
 
-
+			}
 		}
 
 		private void MainForm_Load(object sender, EventArgs e)
@@ -119,10 +127,15 @@ namespace JumpingPlatformGame {
 						{
 							case "CUSTOMER":
 								{
-									var customer = new Customer(firstName: tokens[2], lastName: tokens[3], dateJoined: null);
+									Customer customer;
 									if (tokens.Length >= 6)
 									{
-										customer.DateJoined = new DateTime(int.Parse(tokens[4]), int.Parse(tokens[5]), int.Parse(tokens[6]));
+										DateTime dateJoined = new DateTime(int.Parse(tokens[4]), int.Parse(tokens[5]), int.Parse(tokens[6]));
+										customer = new Customer(firstName: tokens[2], lastName: tokens[3], dateJoined: dateJoined);
+									}
+									else
+									{
+										customer = new Customer(firstName: tokens[2], lastName: tokens[3], dateJoined: null);
 									}
 									customerList.Add(customer);
 									break;
