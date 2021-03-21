@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Data.Common;
 using System.Drawing;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
 namespace JumpingPlatformGame {
 	class Entity {
-		public virtual Color Color => Color.Black;
+		public virtual Color Color => Color.Green;
 		public WorldPoint Location;
 		public virtual void Update(Seconds sec)
 		{
@@ -97,6 +98,12 @@ namespace JumpingPlatformGame {
 	}
 	class CustomerEntity : MovableEntity
 	{
+		public override Color Color => col;
+		Color col;
+		public CustomerEntity(Color color)
+		{
+			col = color;
+		}
 	}
 	class Customer
 	{
@@ -110,14 +117,46 @@ namespace JumpingPlatformGame {
 			this.FirstName = firstName;
 			this.LastName = lastName;
 			this.DateJoined = dateJoined;
-			if(DateJoined == null)
+			if (DateJoined == null)
 			{
 				Color = Color.Gold;
-				Console.WriteLine("gold");
 			}
 			else
 			{
-				Console.WriteLine(DateTime.Now - DateJoined);
+				//Console.WriteLine(DateTime.Now - DateJoined);
+				TimeSpan timeBeingCustomer = DateTime.Now - (DateTime)DateJoined;
+				if(timeBeingCustomer.Days < 365)
+				{
+					Color = Color.Black;
+
+				}
+				else if(timeBeingCustomer.Days >= 365 && timeBeingCustomer.Days < (365 * 2))
+				{
+					Color = Color.DarkRed;
+				}
+				else if (timeBeingCustomer.Days >= (365 * 2) && timeBeingCustomer.Days < (365 * 3))
+				{
+					Color = Color.Red;
+				}
+				else if (timeBeingCustomer.Days >= (365 * 3) && timeBeingCustomer.Days < (365 * 4))
+				{
+					Color = Color.IndianRed;
+				}
+				else
+				{
+					Color = Color.OrangeRed;
+				}
+			}
+		}
+		public override string ToString()
+		{
+			if(DateJoined == null)
+			{
+				return $"{FirstName} {LastName} since always";
+			}
+			else
+			{
+				return $"{FirstName} {LastName} since year {((DateTime)DateJoined).ToString("yyyy")}";
 			}
 		}
 
