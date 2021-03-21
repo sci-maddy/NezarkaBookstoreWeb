@@ -84,6 +84,11 @@ namespace JumpingPlatformGame {
 		private void jackButton_Click(object sender, EventArgs e) => RegisterEntity(new Jack());
 
 		private void jillButton_Click(object sender, EventArgs e) => RegisterEntity(new Jill());
+
+		private void AddCustomerEntity_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 
 	static class ControlExtensions {

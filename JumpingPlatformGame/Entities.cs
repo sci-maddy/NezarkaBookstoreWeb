@@ -95,5 +95,31 @@ namespace JumpingPlatformGame {
 		public override string ToString() => "Jill";
 		public override Color Color => Color.Pink;
 	}
+	class CustomerEntity : MovableEntity
+	{
+	}
+	class Customer
+	{
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+		public DateTime? DateJoined { get; set; }
+		public Color Color;
 
+		public Customer(string firstName, string lastName, DateTime? dateJoined)
+		{
+			this.FirstName = firstName;
+			this.LastName = lastName;
+			this.DateJoined = dateJoined;
+			if(DateJoined == null)
+			{
+				Color = Color.Gold;
+				Console.WriteLine("gold");
+			}
+			else
+			{
+				Console.WriteLine(DateTime.Now - DateJoined);
+			}
+		}
+
+	}
 }

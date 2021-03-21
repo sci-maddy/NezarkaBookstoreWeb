@@ -113,6 +113,7 @@
             this.AddCustomerEntity.TabIndex = 7;
             this.AddCustomerEntity.Text = "Add Customer Entity";
             this.AddCustomerEntity.UseVisualStyleBackColor = true;
+            this.AddCustomerEntity.Click += new System.EventHandler(this.AddCustomerEntity_Click);
             // 
             // MainForm
             // 
